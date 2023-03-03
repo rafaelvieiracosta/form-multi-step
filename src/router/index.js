@@ -1,14 +1,33 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/HomeView.vue";
+
+import PersonalInfo from "../views/personalInfo.vue";
+import SelectYourPlan from "../views/selectYourPlan.vue";
+import PickAddOns from "../views/pickAddOns.vue";
+import FinishingUp from "../views/finishingUp.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    name: "personalInfo",
+    component: PersonalInfo,
+  },
+  {
+    path: "/plan",
+    name: "selectYourPlan",
+    component: SelectYourPlan,
+  },
+  {
+    path: "/addons",
+    name: "pickAddOns",
+    component: PickAddOns,
+  },
+  {
+    path: "/summary",
+    name: "finishingUp",
+    component: FinishingUp,
   },
 ];
 

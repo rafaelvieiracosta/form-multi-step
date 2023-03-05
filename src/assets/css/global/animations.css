@@ -1,0 +1,9 @@
+.error-enter-active,
+.error-leave-active {
+  transition: all 0.3s ease;
+}
+.error-enter,
+.error-leave-active {
+  transform: translateX(10px);
+  opacity: 0;
+}

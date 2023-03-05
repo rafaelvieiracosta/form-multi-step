@@ -89,9 +89,18 @@ export default {
 </script>
 
 <style scoped>
+/* FORMS */
 .section-form {
   margin-top: 40px;
 }
+.section-form-item {
+  display: block;
+}
+.section-form-item + .section-form-item {
+  margin-top: 24px;
+}
+
+/* FORMS: INDICATOR AND ERROR TEXTS */
 .section-form-item-text {
   display: flex;
   justify-content: space-between;
@@ -108,12 +117,7 @@ export default {
   color: var(--e1);
 }
 
-.section-form-item {
-  display: block;
-}
-.section-form-item + .section-form-item {
-  margin-top: 24px;
-}
+/* FORMS: INPUT */
 .section-form-item-input {
   margin-top: 8px;
   padding: 14px 15px;
@@ -130,21 +134,10 @@ export default {
 .section-form-item-input.error {
   border-color: var(--e1);
 }
-.section-form-item-input:focus {
+.section-form-item-input:not(.error):focus {
   border-color: var(--p1);
 }
 .section-form-item-input::placeholder {
   color: var(--c3);
-}
-
-/* ANIMAÇÕES */
-.error-enter-active,
-.error-leave-active {
-  transition: all 0.3s ease;
-}
-.error-enter,
-.error-leave-active {
-  transform: translateX(10px);
-  opacity: 0;
 }
 </style>

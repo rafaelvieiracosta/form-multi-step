@@ -1,3 +1,6 @@
 /* GLOBAL */
 @import './global/reset.css'; 
 @import './global/colors.css'; 
+
+/* SECTIONS */
+@import './sections.css'; 

@@ -57,8 +57,9 @@
         </nav>
       </header>
 
-      <router-view />
-
+      <keep-alive>
+        <router-view />
+      </keep-alive>
       <footer></footer>
     </main>
   </div>

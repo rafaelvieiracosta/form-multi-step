@@ -5,7 +5,7 @@
       Por favor, forneça seu nome, e-mail e telefone.
     </p>
 
-    <form class="section-form">
+    <form class="section-form" autocomplete="off">
       <label for="name" class="section-form-item">
         <div class="section-form-item-text">
           <p class="section-form-item-text-indicator">Nome</p>
@@ -23,6 +23,7 @@
           :class="{ error: errorName }"
           placeholder="Ex: Gustavo Ohashi"
           v-model="name"
+          @focusout="checkName()"
         />
       </label>
 
@@ -38,11 +39,12 @@
 
         <input
           id="name"
-          type="text"
+          type="email"
           class="section-form-item-input"
           :class="{ error: errorEmail }"
           placeholder="Ex: gustavo.ohashi@outlook.com"
           v-model="email"
+          @focusout="checkEmail()"
         />
       </label>
 
@@ -58,7 +60,7 @@
 
         <input
           id="name"
-          type="text"
+          type="tel"
           class="section-form-item-input"
           :class="{ error: errorPhone }"
           placeholder="Ex: +55 11 94219-8575"
@@ -74,16 +76,74 @@ export default {
   name: "personalInfo",
   data() {
     return {
-      name: null,
+      name: "",
       errorName: false,
 
-      email: null,
+      email: "",
       errorEmail: false,
 
-      phone: null,
+      phone: "",
       errorPhone: false,
-      teste: false,
     };
+  },
+  watch: {
+    name() {
+      this.name = this.name.replace(/[^a-z\s]/gi, "");
+      this.errorName = false;
+    },
+    email() {
+      this.errorEmail = false;
+    },
+    phone() {
+      this.applyMaskPhone();
+      this.errorPhone = false;
+    },
+  },
+  methods: {
+    checkName() {
+      if (this.name.length === 0) {
+        this.errorName = "Esse campo é obrigatório";
+      } else if (!(this.name.length > 2)) {
+        this.errorName = "Digite um nome verdadeiro";
+      } else if (!/\s\w{3}/i.test(this.name)) {
+        this.errorName = "Digite seu nome e sobrenome";
+      } else {
+        this.errorName = false;
+        this.$store.commit("SET_NAME", this.name);
+      }
+    },
+    checkEmail() {
+      const regexEmail = /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/;
+
+      if (this.email.length === 0) {
+        this.errorEmail = "Esse campo é obrigatório";
+      } else if (!regexEmail.test(this.email)) {
+        this.errorEmail = "Digite um e-mail válido";
+      } else {
+        this.errorEmail = false;
+        this.$store.commit("SET_EMAIL", this.email);
+      }
+    },
+    applyMaskPhone() {
+      const n = this.phone;
+      switch (this.phone.length) {
+        case 2:
+          this.phone = `+${n[0]}${n[1]}`;
+          break;
+        case 4:
+          this.phone = `+${n[1]}${n[2]} ${n[3]}`;
+          break;
+        case 7:
+          this.phone = `+${n[1]}${n[2]} ${n[4]}${n[5]} ${n[6]}`;
+          break;
+        case 9:
+          this.phone = `+${n[1]}${n[2]} ${n[4]}${n[5]} ${n[7]} ${n[8]}`;
+          break;
+        case 14:
+          this.phone = `+${n[1]}${n[2]} ${n[4]}${n[5]} ${n[7]} ${n[9]}${n[10]}${n[11]}${n[12]}-${n[13]}`;
+          break;
+      }
+    },
   },
 };
 </script>

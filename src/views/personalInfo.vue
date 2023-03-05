@@ -1,6 +1,71 @@
 <template>
-  <section>
-    <h1>add on</h1>
+  <section id="personalInfo" class="section">
+    <h1 class="section-title">Informação pessoal</h1>
+    <p class="section-description" @click="teste = !teste">
+      Por favor, forneça seu nome, e-mail e telefone.
+    </p>
+
+    <form class="section-form">
+      <label for="name" class="section-form-item">
+        <div class="section-form-item-text">
+          <p class="section-form-item-text-indicator">Nome</p>
+          <transition name="error">
+            <p class="section-form-item-text-error" v-if="errorName">
+              {{ errorName }}
+            </p>
+          </transition>
+        </div>
+
+        <input
+          id="name"
+          type="text"
+          class="section-form-item-input"
+          :class="{ error: errorName }"
+          placeholder="Ex: Gustavo Ohashi"
+          v-model="name"
+        />
+      </label>
+
+      <label for="name" class="section-form-item">
+        <div class="section-form-item-text">
+          <p class="section-form-item-text-indicator">Email</p>
+          <transition name="error">
+            <p class="section-form-item-text-error" v-if="errorEmail">
+              {{ errorEmail }}
+            </p>
+          </transition>
+        </div>
+
+        <input
+          id="name"
+          type="text"
+          class="section-form-item-input"
+          :class="{ error: errorEmail }"
+          placeholder="Ex: gustavo.ohashi@outlook.com"
+          v-model="email"
+        />
+      </label>
+
+      <label for="name" class="section-form-item">
+        <div class="section-form-item-text">
+          <p class="section-form-item-text-indicator">Celular</p>
+          <transition name="error">
+            <p class="section-form-item-text-error" v-if="errorPhone">
+              {{ errorPhone }}
+            </p>
+          </transition>
+        </div>
+
+        <input
+          id="name"
+          type="text"
+          class="section-form-item-input"
+          :class="{ error: errorPhone }"
+          placeholder="Ex: +55 11 94219-8575"
+          v-model="phone"
+        />
+      </label>
+    </form>
   </section>
 </template>
 
@@ -8,9 +73,78 @@
 export default {
   name: "personalInfo",
   data() {
-    return {};
+    return {
+      name: null,
+      errorName: false,
+
+      email: null,
+      errorEmail: false,
+
+      phone: null,
+      errorPhone: false,
+      teste: false,
+    };
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+.section-form {
+  margin-top: 40px;
+}
+.section-form-item-text {
+  display: flex;
+  justify-content: space-between;
+}
+.section-form-item-text-indicator {
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--c10);
+}
+.section-form-item-text-error {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 700;
+  color: var(--e1);
+}
+
+.section-form-item {
+  display: block;
+}
+.section-form-item + .section-form-item {
+  margin-top: 24px;
+}
+.section-form-item-input {
+  margin-top: 8px;
+  padding: 14px 15px;
+  width: 100%;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  color: var(--c11);
+  border: 1px solid var(--c3);
+  border-radius: 8px;
+  outline: none;
+  transition: 0.2s;
+}
+.section-form-item-input.error {
+  border-color: var(--e1);
+}
+.section-form-item-input:focus {
+  border-color: var(--p1);
+}
+.section-form-item-input::placeholder {
+  color: var(--c3);
+}
+
+/* ANIMAÇÕES */
+.error-enter-active,
+.error-leave-active {
+  transition: all 0.3s ease;
+}
+.error-enter,
+.error-leave-active {
+  transform: translateX(10px);
+  opacity: 0;
+}
+</style>

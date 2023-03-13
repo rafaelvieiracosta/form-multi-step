@@ -1,18 +1,35 @@
 .section {
-  width: 100%;
-  max-width: 482px;
-  margin: 0 auto;
-  padding: 40px 16px 0;
+  width: calc(100% - 32px);
+  margin: 0 16px;
+  padding: 32px 24px;
+  border-radius: 10px;
+  background-color: var(--c0);
 }
 .section-title {
   font-weight: 700;
-  font-size: 32px;
+  font-size: 24px;
   color: var(--c11);
 }
 .section-description {
   font-size: 17px;
   line-height: 20px;
   letter-spacing: -0.03em;
-  margin-top: 11px;
+  margin-top: 13px;
   color: var(--c7);
+}
+@media(min-width: 768px) {
+  .section {
+    width: 100%;
+    max-width: 482px;
+    margin: 0 auto;
+    padding: 40px 16px 0;
+    border-radius: initial;
+    background-color: initial;
+  }
+  .section-title {
+    font-size: 32px;
+  }
+  .section-description {
+    margin-top: 11px;
+  }
 }

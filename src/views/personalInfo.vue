@@ -176,43 +176,64 @@ export default {
 <style scoped>
 /* FORMS */
 .section-form {
-  margin-top: 40px;
+  margin-top: 24px;
 }
 .section-form-item {
   display: block;
 }
 .section-form-item + .section-form-item {
-  margin-top: 24px;
+  margin-top: 16px;
+}
+@media(min-width: 768px) {
+  .section-form {
+    margin-top: 40px;
+  }
+  .section-form-item + .section-form-item {
+    margin-top: 24px;
+  }
 }
 
 /* FORMS: INDICATOR AND ERROR TEXTS */
 .section-form-item-text {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
+  gap: 10px;
 }
 .section-form-item-text-indicator {
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 12px;
+  line-height: 14px;
   color: var(--c10);
 }
 .section-form-item-text-error {
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 12px;
+  line-height: 14px;
   font-weight: 700;
   color: var(--e1);
+  text-align: right;
+}
+@media(min-width: 768px) {
+  .section-form-item-text-indicator {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .section-form-item-text-error {
+    font-size: 14px;
+    line-height: 16px;
+  }
 }
 
 /* FORMS: INPUT */
 .section-form-item-input {
-  margin-top: 8px;
-  padding: 14px 15px;
+  margin-top: 3px;
+  padding: 10px 15px;
   width: 100%;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 18px;
+  font-size: 15px;
+  line-height: 17px;
   color: var(--c11);
   border: 1px solid var(--c3);
-  border-radius: 8px;
+  border-radius: 4px;
   outline: none;
   transition: 0.2s;
 }
@@ -224,5 +245,14 @@ export default {
 }
 .section-form-item-input::placeholder {
   color: var(--c3);
+}
+@media(min-width: 768px) {
+  .section-form-item-input {
+    margin-top: 8px;
+    padding: 14px 15px;
+    font-size: 16px;
+    line-height: 18px;
+    border-radius: 8px;
+  }
 }
 </style>

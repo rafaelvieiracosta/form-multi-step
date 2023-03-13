@@ -63,8 +63,11 @@
           type="tel"
           class="section-form-item-input"
           :class="{ error: errorPhone }"
-          placeholder="Ex: +55 11 94219-8575"
+          placeholder="Ex: +55 11 9 4219-8575"
+          maxlength="18"
           v-model="phone"
+          @input="applyMaskPhone"
+          @focusout="checkPhone()"
         />
       </label>
     </form>
@@ -95,7 +98,6 @@ export default {
       this.errorEmail = false;
     },
     phone() {
-      this.applyMaskPhone();
       this.errorPhone = false;
     },
   },
@@ -124,24 +126,47 @@ export default {
         this.$store.commit("SET_EMAIL", this.email);
       }
     },
-    applyMaskPhone() {
-      const n = this.phone;
-      switch (this.phone.length) {
-        case 2:
-          this.phone = `+${n[0]}${n[1]}`;
-          break;
-        case 4:
-          this.phone = `+${n[1]}${n[2]} ${n[3]}`;
-          break;
-        case 7:
-          this.phone = `+${n[1]}${n[2]} ${n[4]}${n[5]} ${n[6]}`;
-          break;
-        case 9:
-          this.phone = `+${n[1]}${n[2]} ${n[4]}${n[5]} ${n[7]} ${n[8]}`;
-          break;
-        case 14:
-          this.phone = `+${n[1]}${n[2]} ${n[4]}${n[5]} ${n[7]} ${n[9]}${n[10]}${n[11]}${n[12]}-${n[13]}`;
-          break;
+    checkPhone() {
+      if (this.phone.length === 0) {
+        this.errorPhone = "Esse campo é obrigatório";
+      } else if (this.phone.length < 18) {
+        this.errorPhone = "Digite um telefone válido";
+      } else if (this.phone.length === 18) {
+        /* eslint-disable prettier/prettier */
+        const phoneNoPlusSign = this.phone.slice(1, this.phone.length);
+        const phoneNoHyphen = `${phoneNoPlusSign.slice(0, 12)}${phoneNoPlusSign.slice(13)}`;
+        const phoneTrimmed = phoneNoHyphen.replaceAll(" ", "");
+
+        if (/[^0-9]/g.test(phoneTrimmed)) {
+          this.errorPhone = "Digite apenas números";
+        }
+      } else {
+        this.errorPhone = false;
+        this.$store.commit("SET_PHONE", this.phone);
+      }
+    },
+    applyMaskPhone(event) {
+      if (this.phone === "+") {
+        this.phone = "";
+      } else if (event.inputType !== "deleteContentBackward") {
+        const n = this.phone;
+        switch (this.phone.length) {
+          case 2:
+            this.phone = `+${n[0]}${n[1]}`;
+            break;
+          case 4:
+            this.phone = `+${n[1]}${n[2]} ${n[3]}`;
+            break;
+          case 7:
+            this.phone = `+${n[1]}${n[2]} ${n[4]}${n[5]} ${n[6]}`;
+            break;
+          case 9:
+            this.phone = `+${n[1]}${n[2]} ${n[4]}${n[5]} ${n[7]} ${n[8]}`;
+            break;
+          case 14:
+            this.phone = `+${n[1]}${n[2]} ${n[4]}${n[5]} ${n[7]} ${n[9]}${n[10]}${n[11]}${n[12]}-${n[13]}`;
+            break;
+        }
       }
     },
   },

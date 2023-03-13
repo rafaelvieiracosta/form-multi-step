@@ -139,10 +139,10 @@ export default {
 
         if (/[^0-9]/g.test(phoneTrimmed)) {
           this.errorPhone = "Digite apenas números";
+        } else {
+          this.errorPhone = false;
+          this.$store.commit("SET_PHONE", this.phone);
         }
-      } else {
-        this.errorPhone = false;
-        this.$store.commit("SET_PHONE", this.phone);
       }
     },
     applyMaskPhone(event) {

@@ -7,3 +7,12 @@
   transform: translateX(10px);
   opacity: 0;
 }
+
+.simple-enter-active,
+.simple-leave-active {
+  transition: all 0.3s ease;
+}
+.simple-enter,
+.simple-leave-active {
+  opacity: 0;
+}

@@ -122,7 +122,7 @@
     </form>
 
     <div class="section-period" @click="period = !period">
-      <p class="section-period-name">Mensal</p>
+      <p class="section-period-name" :class="{ selected: !period }">Mensal</p>
 
       <label for="period" class="section-period-label">
         <input
@@ -135,7 +135,7 @@
         <span class="section-period-label-slider"></span>
       </label>
 
-      <p class="section-period-name">Anual</p>
+      <p class="section-period-name" :class="{ selected: period }">Anual</p>
     </div>
   </section>
 </template>
@@ -206,22 +206,32 @@ export default {
 
 <style scoped>
 .section-form {
-  margin-top: 40px;
+  margin-top: 24px;
   display: flex;
-  gap: 18px;
+  flex-direction: column;
+  gap: 12px;
 }
 .section-form-item-input {
   display: none;
+}
+@media (min-width: 768px) {
+  .section-form {
+    margin-top: 40px;
+    flex-direction: row;
+    gap: 18px;
+  }
 }
 
 /* FORM: ITEMS */
 .section-form-item {
   flex: 1;
-  padding: 20px 16px 17px;
+  padding: 17px 16px 20px;
   border: 1px solid var(--c3);
   border-radius: 7px;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+  display: flex;
+  gap: 14px;
 }
 .section-form-item:hover {
   border-color: var(--p1);
@@ -230,11 +240,14 @@ export default {
   border-color: var(--p1);
   background-color: var(--s1);
 }
+@media (min-width: 768px) {
+  .section-form-item {
+    display: block;
+    padding: 20px 16px 17px;
+  }
+}
 
 /* FORM: ITEMS TEXTS */
-.section-form-item-text {
-  margin-top: 43px;
-}
 .section-form-item-text-name {
   font-weight: 700;
   font-size: 16px;
@@ -252,6 +265,12 @@ export default {
 }
 .section-form-item-text-price span {
   color: var(--p3);
+  font-size: 12px;
+}
+@media (min-width: 768px) {
+  .section-form-item-text {
+    margin-top: 43px;
+  }
 }
 
 /* PERIOD TOGGLE INPUT */
@@ -272,6 +291,11 @@ export default {
   letter-spacing: -0.035em;
   padding: 15px;
   cursor: pointer;
+  color: var(--c6);
+  transition: 0.4s;
+}
+.section-period-name.selected {
+  color: var(--c12);
 }
 .section-period-label-input {
   display: none;

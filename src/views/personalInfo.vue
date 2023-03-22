@@ -1,7 +1,7 @@
 <template>
   <section id="personalInfo" class="section">
-    <h1 class="section-title">Informação pessoal</h1>
-    <p class="section-description" @click="teste = !teste">
+    <h1 class="section-title">Informações pessoais</h1>
+    <p class="section-description">
       Por favor, forneça seu nome, e-mail e telefone.
     </p>
 

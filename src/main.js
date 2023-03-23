@@ -5,6 +5,18 @@ import store from "./store";
 
 Vue.config.productionTip = false;
 
+Vue.filter("formattedPrice", (valor) => {
+  valor = Number(valor);
+  if (!isNaN(valor)) {
+    return valor.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+  } else {
+    return "";
+  }
+});
+
 new Vue({
   router,
   store,

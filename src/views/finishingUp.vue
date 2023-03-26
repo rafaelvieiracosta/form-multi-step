@@ -8,7 +8,11 @@
     <div class="section-resume">
       <div class="section-resume-plan">
         <div class="section-resume-plan-name">
-          <h2>{{ planData.name }} ({{ planData.periodSelected }})</h2>
+          <h2>
+            {{ planData.name }} ({{
+              planData.periodSelected === "yearly" ? "Anual" : "Mensal"
+            }})
+          </h2>
           <router-link to="/plan">Mudar</router-link>
         </div>
 
@@ -89,10 +93,16 @@ export default {
 
 <style scoped>
 .section-resume {
-  margin-top: 32px;
+  margin-top: 24px;
   background-color: var(--c1);
   border-radius: 7px;
-  padding: 20px 24px;
+  padding: 20px 16px;
+}
+@media (min-width: 768px) {
+  .section-resume {
+    margin-top: 32px;
+    padding: 20px 24px;
+  }
 }
 
 /* NAME AND PRICE OF THE SELECTED PLAN */
@@ -100,11 +110,11 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
 }
 .section-resume-plan-name h2 {
   font-weight: 500;
-  font-size: 16px;
-  line-height: 18px;
+  font-size: 14px;
   text-transform: capitalize;
   color: var(--c12);
 }
@@ -117,24 +127,30 @@ export default {
 }
 .section-resume-plan-price {
   font-weight: 700;
-  font-size: 16px;
-  line-height: 18px;
+  font-size: 14px;
   color: var(--c12);
+}
+@media (min-width: 768px) {
+  .section-resume-plan-name h2,
+  .section-resume-plan-price {
+    font-size: 16px;
+  }
 }
 
 /* ADDONS BELOW THE PLAN */
 .section-resume-addons {
-  margin-top: 25px;
-  padding-top: 19px;
+  margin-top: 13px;
+  padding-top: 15px;
   border-top: 1px solid var(--c3);
 }
 .section-resume-addons-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
 }
 .section-resume-addons-item + .section-resume-addons-item {
-  margin-top: 20px;
+  margin-top: 16px;
 }
 .section-resume-addons-item-name,
 .section-resume-addons-item-price {
@@ -147,6 +163,15 @@ export default {
 .section-resume-addons-item-price {
   color: var(--c12);
 }
+@media (min-width: 768px) {
+  .section-resume-addons {
+    margin-top: 25px;
+    padding-top: 19px;
+  }
+  .section-resume-addons-item + .section-resume-addons-item {
+    margin-top: 20px;
+  }
+}
 
 /* TOTAL PRICE AT THE END */
 .section-total {
@@ -154,7 +179,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 16px;
+  gap: 10px;
 }
 .section-total-text {
   font-size: 14px;
@@ -163,8 +189,17 @@ export default {
 }
 .section-total-price {
   font-weight: 700;
-  font-size: 20px;
-  line-height: 23px;
+  font-size: 16px;
+  line-height: 18px;
   color: var(--p1);
+}
+@media (min-width: 768px) {
+  .section-total {
+    padding: 0 24px;
+  }
+  .section-total-price {
+    font-size: 20px;
+    line-height: 23px;
+  }
 }
 </style>

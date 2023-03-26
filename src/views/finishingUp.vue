@@ -23,7 +23,10 @@
         </p>
       </div>
 
-      <div class="section-resume-addons">
+      <div
+        v-if="this.$store.state.pickAddOns.addOns.length"
+        class="section-resume-addons"
+      >
         <div
           v-for="item in this.$store.state.pickAddOns.addOns"
           :key="item.id"
@@ -45,6 +48,20 @@
         </div>
       </div>
     </div>
+
+    <div v-if="planData.periodSelected === 'yearly'" class="section-total">
+      <p class="section-total-text">Total (por ano)</p>
+      <h3 class="section-total-price">
+        +{{ totalPrice | formattedPrice }}/ano
+      </h3>
+    </div>
+
+    <div v-else class="section-total">
+      <p class="section-total-text">Total (por mês)</p>
+      <h3 class="section-total-price">
+        +{{ totalPrice | formattedPrice }}/mês
+      </h3>
+    </div>
   </section>
 </template>
 
@@ -58,6 +75,14 @@ export default {
     planData() {
       return this.$store.state.selectYourPlan.plan;
     },
+    totalPrice() {
+      return (
+        this.planData.price[this.planData.periodSelected] +
+        this.$store.state.pickAddOns.addOns.reduce((acumulador, valorAtual) => {
+          return acumulador + valorAtual.price[this.planData.periodSelected];
+        }, 0)
+      );
+    },
   },
 };
 </script>
@@ -68,5 +93,78 @@ export default {
   background-color: var(--c1);
   border-radius: 7px;
   padding: 20px 24px;
+}
+
+/* NAME AND PRICE OF THE SELECTED PLAN */
+.section-resume-plan {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.section-resume-plan-name h2 {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  text-transform: capitalize;
+  color: var(--c12);
+}
+.section-resume-plan-name a {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--c6);
+}
+.section-resume-plan-price {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+  color: var(--c12);
+}
+
+/* ADDONS BELOW THE PLAN */
+.section-resume-addons {
+  margin-top: 25px;
+  padding-top: 19px;
+  border-top: 1px solid var(--c3);
+}
+.section-resume-addons-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.section-resume-addons-item + .section-resume-addons-item {
+  margin-top: 20px;
+}
+.section-resume-addons-item-name,
+.section-resume-addons-item-price {
+  font-size: 14px;
+  line-height: 16px;
+}
+.section-resume-addons-item-name {
+  color: var(--c6);
+}
+.section-resume-addons-item-price {
+  color: var(--c12);
+}
+
+/* TOTAL PRICE AT THE END */
+.section-total {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+.section-total-text {
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--c6);
+}
+.section-total-price {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  color: var(--p1);
 }
 </style>

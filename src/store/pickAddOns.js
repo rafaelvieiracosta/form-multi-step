@@ -1,6 +1,6 @@
 export default {
   state: {
-    addOns: null,
+    addOns: [],
   },
   mutations: {
     SET_ADDONS(state, value) {

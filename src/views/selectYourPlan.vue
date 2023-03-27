@@ -7,114 +7,40 @@
 
     <form class="section-form">
       <label
-        for="arcade"
+        v-for="item in this.plans"
+        :key="item.name"
+        :for="item.name"
         class="section-form-item"
-        :class="{ active: plan === 'arcade' }"
+        :class="{ active: plan.name === item.name }"
       >
         <img
-          src="@/assets/images/icon-arcade.svg"
-          alt="Controle de um video game com alavanca"
+          :src="require(`@/assets/images/icon-${item.name}.svg`)"
+          :alt="item.alt"
           width="40"
           height="40"
           class="section-form-item-icon"
         />
 
         <div class="section-form-item-text">
-          <h2 class="section-form-item-text-name">Arcade</h2>
+          <h2 class="section-form-item-text-name">{{ item.name }}</h2>
 
           <transition name="simple" mode="out-in">
             <p v-if="period" key="anualy" class="section-form-item-text-price">
-              R$ 90,00/ano
+              {{ item.price.yearly | formattedPrice }}/ano
               <span>2 meses grátis</span>
             </p>
 
             <p v-else key="monthly" class="section-form-item-text-price">
-              R$ 9,00/mês
+              {{ item.price.monthly | formattedPrice }}/mês
             </p>
           </transition>
         </div>
 
         <input
           name="plan"
-          id="arcade"
+          :id="item.name"
           type="radio"
-          value="arcade"
-          v-model="plan"
-          class="section-form-item-input"
-        />
-      </label>
-
-      <label
-        for="advanced"
-        class="section-form-item"
-        :class="{ active: plan === 'advanced' }"
-      >
-        <img
-          src="@/assets/images/icon-advanced.svg"
-          alt="Controle de um video game com setas"
-          width="40"
-          height="40"
-          class="section-form-item-icon"
-        />
-
-        <div class="section-form-item-text">
-          <h2 class="section-form-item-text-name">Advanced</h2>
-
-          <transition name="simple" mode="out-in">
-            <p v-if="period" key="anualy" class="section-form-item-text-price">
-              R$ 120,00/ano
-              <span>2 meses grátis</span>
-            </p>
-
-            <p v-else key="monthly" class="section-form-item-text-price">
-              R$ 12,00/mês
-            </p>
-          </transition>
-        </div>
-
-        <input
-          name="plan"
-          id="advanced"
-          type="radio"
-          value="advanced"
-          v-model="plan"
-          class="section-form-item-input"
-        />
-      </label>
-
-      <label
-        for="pro"
-        class="section-form-item"
-        :class="{ active: plan === 'pro' }"
-      >
-        <img
-          src="@/assets/images/icon-pro.svg"
-          alt="Controle de um video game com setas"
-          width="40"
-          height="40"
-          class="section-form-item-icon"
-        />
-
-        <div class="section-form-item-text">
-          <h2 class="section-form-item-text-name">Pro</h2>
-
-          <transition name="simple" mode="out-in">
-            <p v-if="period" key="anualy" class="section-form-item-text-price">
-              R$ 150,00/ano
-              <span>2 meses grátis</span>
-            </p>
-
-            <p v-else key="monthly" class="section-form-item-text-price">
-              R$ 15,00/mês
-            </p>
-          </transition>
-        </div>
-
-        <input
-          name="plan"
-          id="pro"
-          type="radio"
-          value="pro"
+          :value="item"
           v-model="plan"
           class="section-form-item-input"
         />
@@ -145,7 +71,40 @@ export default {
   name: "selectYourPlan",
   data() {
     return {
-      plan: "arcade",
+      plans: [
+        {
+          name: "arcade",
+          alt: "Controle de um video game com alavanca",
+          price: {
+            monthly: 9,
+            yearly: 90,
+          },
+        },
+        {
+          name: "advanced",
+          alt: "Controle de um video game com setas",
+          price: {
+            monthly: 12,
+            yearly: 120,
+          },
+        },
+        {
+          name: "pro",
+          alt: "Controle de um video game com setas e analógicos",
+          price: {
+            monthly: 15,
+            yearly: 150,
+          },
+        },
+      ],
+      plan: {
+        name: "arcade",
+        alt: "Controle de um video game com alavanca",
+        price: {
+          monthly: 9,
+          yearly: 90,
+        },
+      },
       period: false,
     };
   },
@@ -164,41 +123,10 @@ export default {
   },
   methods: {
     checkPlan() {
-      let dataPlan;
-
-      switch (this.plan) {
-        case "arcade":
-          dataPlan = {
-            name: "arcade",
-            periodSelected: this.periodSelected,
-            price: {
-              monthly: 9,
-              yearly: 90,
-            },
-          };
-          break;
-        case "advanced":
-          dataPlan = {
-            name: "advanced",
-            periodSelected: this.periodSelected,
-            price: {
-              monthly: 12,
-              yearly: 120,
-            },
-          };
-          break;
-        case "pro":
-          dataPlan = {
-            name: "pro",
-            periodSelected: this.periodSelected,
-            price: {
-              monthly: 15,
-              yearly: 150,
-            },
-          };
-          break;
-      }
-      this.$store.commit("SET_PLAN", dataPlan);
+      this.$store.commit("SET_PLAN", {
+        ...this.plan,
+        periodSelected: this.periodSelected,
+      });
     },
   },
 };
@@ -252,6 +180,7 @@ export default {
   font-weight: 700;
   font-size: 16px;
   line-height: 18px;
+  text-transform: capitalize;
   color: var(--c11);
 }
 .section-form-item-text-price {

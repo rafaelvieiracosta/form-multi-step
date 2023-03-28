@@ -15,4 +15,21 @@ export default {
       state.phone = value;
     },
   },
+  getters: {
+    error(state) {
+      let errors = [];
+
+      if (state.name === null) {
+        errors.push("Nome");
+      }
+      if (state.email === null) {
+        errors.push("Email");
+      }
+      if (state.phone === null) {
+        errors.push("Celular");
+      }
+
+      return errors;
+    },
+  },
 };

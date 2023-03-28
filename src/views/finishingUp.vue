@@ -5,7 +5,30 @@
       Verifique se tudo está OK antes de confirmar.
     </p>
 
-    <div class="section-resume">
+    <router-link
+      to="/"
+      v-if="errorInPersonalInfo.length > 0"
+      class="section-error"
+    >
+      <h2 class="section-error-title">
+        Suas informações pessoais não estão completas
+      </h2>
+
+      <div class="section-error-itens">
+        <span
+          v-for="(item, index) in errorInPersonalInfo"
+          :key="index"
+          class="section-error-itens-item"
+        >
+          {{ item }}
+        </span>
+      </div>
+    </router-link>
+
+    <div
+      class="section-resume"
+      :class="{ 'alert-error': errorInPersonalInfo.length > 0 }"
+    >
       <div class="section-resume-plan">
         <div class="section-resume-plan-name">
           <h2>
@@ -87,6 +110,9 @@ export default {
         }, 0)
       );
     },
+    errorInPersonalInfo() {
+      return this.$store.getters.error;
+    },
   },
 };
 </script>
@@ -98,11 +124,46 @@ export default {
   border-radius: 7px;
   padding: 20px 16px;
 }
+.section-resume.alert-error {
+  margin-top: 10px;
+}
 @media (min-width: 768px) {
   .section-resume {
     margin-top: 32px;
     padding: 20px 24px;
   }
+}
+
+/* ERRORS THAT APPEAR IF personalInfo IS MISSING */
+.section-error {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+}
+.section-error {
+  background-color: #ff525230;
+  padding: 20px 24px;
+  border-radius: 7px;
+  margin-top: 32px;
+}
+.section-error-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--e1);
+}
+.section-error-itens {
+  display: flex;
+  gap: 5px;
+}
+.section-error-itens-item {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: var(--e1);
+  color: var(--c0);
+  font-weight: 700;
+  font-size: 12px;
+  border-radius: 4px;
 }
 
 /* NAME AND PRICE OF THE SELECTED PLAN */

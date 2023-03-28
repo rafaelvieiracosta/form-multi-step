@@ -137,14 +137,16 @@ export default {
 /* ERRORS THAT APPEAR IF personalInfo IS MISSING */
 .section-error {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 20px;
   text-decoration: none;
 }
 .section-error {
   background-color: #ff525230;
   padding: 20px 24px;
   border-radius: 7px;
-  margin-top: 32px;
+  margin-top: 22px;
 }
 .section-error-title {
   font-size: 14px;
@@ -153,17 +155,26 @@ export default {
 }
 .section-error-itens {
   display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   gap: 5px;
 }
 .section-error-itens-item {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 61px;
   padding: 5px 10px;
   background-color: var(--e1);
   color: var(--c0);
   font-weight: 700;
   font-size: 12px;
   border-radius: 4px;
+}
+@media (min-width: 768px) {
+  .section-error-itens {
+    flex-wrap: nowrap;
+  }
 }
 
 /* NAME AND PRICE OF THE SELECTED PLAN */

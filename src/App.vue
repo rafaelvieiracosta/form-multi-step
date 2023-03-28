@@ -4,7 +4,9 @@
       <Header />
 
       <keep-alive>
-        <router-view />
+        <transition name="slider" mode="out-in">
+          <router-view />
+        </transition>
       </keep-alive>
 
       <Footer />

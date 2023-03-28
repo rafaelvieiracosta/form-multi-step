@@ -1,3 +1,4 @@
+/* SMALL TRANSLATE */
 .error-enter-active,
 .error-leave-active {
   transition: all 0.3s ease;
@@ -8,6 +9,7 @@
   opacity: 0;
 }
 
+/* OPACITY */
 .simple-enter-active,
 .simple-leave-active {
   transition: all 0.3s ease;
@@ -15,4 +17,28 @@
 .simple-enter,
 .simple-leave-active {
   opacity: 0;
+}
+
+/* SLIDER MOBILE BUT OPACITY DESKTOP */
+.slider-enter-active,
+.slider-leave-active {
+  transition: all 0.3s ease;
+}
+.slider-enter {
+  transform: translateX(-50vw);
+  opacity: 0;
+}
+.slider-leave-active {
+  transform: translateX(50vw);
+  opacity: 0;
+}
+@media (min-width: 768px) {
+  .slider-enter {
+    transform: initial;
+    opacity: 0;
+  }
+  .slider-leave-active {
+    transform: initial;
+    opacity: 0;
+  }
 }

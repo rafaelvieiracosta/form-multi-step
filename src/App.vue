@@ -42,8 +42,7 @@ export default {
   #app {
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 20px;
+    padding: 105px 20px 20px;
   }
   .main {
     display: grid;

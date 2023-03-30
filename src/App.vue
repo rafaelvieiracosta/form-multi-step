@@ -3,11 +3,11 @@
     <main class="main">
       <Header />
 
-      <keep-alive>
-        <transition name="slider" mode="out-in">
+      <transition name="slider" mode="out-in">
+        <keep-alive>
           <router-view />
-        </transition>
-      </keep-alive>
+        </keep-alive>
+      </transition>
 
       <Footer />
     </main>

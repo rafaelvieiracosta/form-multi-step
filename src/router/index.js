@@ -5,6 +5,7 @@ import PersonalInfo from "../views/personalInfo.vue";
 import SelectYourPlan from "../views/selectYourPlan.vue";
 import PickAddOns from "../views/pickAddOns.vue";
 import FinishingUp from "../views/finishingUp.vue";
+import SentWithSuccess from "../views/sentWithSuccess.vue";
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,18 @@ const routes = [
     path: "/summary",
     name: "finishingUp",
     component: FinishingUp,
+  },
+  {
+    path: "/success",
+    name: "sentWithSuccess",
+    component: SentWithSuccess,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.getItem("buttonClicked")) {
+        next("/");
+      } else {
+        next();
+      }
+    },
   },
 ];
 

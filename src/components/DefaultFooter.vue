@@ -12,14 +12,14 @@
       Voltar
     </router-link>
 
-    <router-link
+    <button
       v-if="$route.name === 'finishingUp'"
-      to="/success"
       class="footer-btn-primary"
       :class="{ disable: errorInPersonalInfo.length > 0 }"
+      @click="goSentWithSuccess"
     >
       Confirmar
-    </router-link>
+    </button>
 
     <router-link v-else class="footer-btn-primary" :to="nextRoute">
       Próxima
@@ -68,6 +68,12 @@ export default {
       return this.$store.getters.error;
     },
   },
+  methods: {
+    goSentWithSuccess() {
+      localStorage.setItem("buttonClicked", "true");
+      this.$router.push({ name: "sentWithSuccess" });
+    },
+  },
 };
 </script>
 
@@ -97,6 +103,9 @@ export default {
   text-align: center;
   border-radius: 7px;
   transition: 0.4s ease-in;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 .footer-btn-primary.disable {
   opacity: 0.2;

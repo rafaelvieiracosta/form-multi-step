@@ -1,5 +1,8 @@
 <template>
-  <header class="header">
+  <header
+    class="header"
+    :class="{ 'no-click': $route.name === 'sentWithSuccess' }"
+  >
     <nav class="nav">
       <ul
         class="navigation"
@@ -61,6 +64,9 @@ export default {};
 <style>
 .header {
   grid-row: span 2;
+}
+.header.no-click {
+  pointer-events: none;
 }
 .nav {
   padding: 32px 20px 34px;

@@ -31,18 +31,18 @@ export default {
 
 #app {
   background-color: var(--c2);
-  min-height: 100vh;
 }
 .main {
   background-image: url("../src/assets/images/bg-sidebar-mobile.svg");
   background-repeat: no-repeat;
   background-size: 100%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 @media (min-width: 768px) {
   #app {
     display: flex;
     justify-content: center;
-    padding: 105px 20px 20px;
+    padding: 105px 20px;
   }
   .main {
     display: grid;

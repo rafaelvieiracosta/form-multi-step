@@ -27,7 +27,7 @@
         />
       </label>
 
-      <label for="name" class="section-form-item">
+      <label for="email" class="section-form-item">
         <div class="section-form-item-text">
           <p class="section-form-item-text-indicator">Email</p>
           <transition name="error">
@@ -38,7 +38,7 @@
         </div>
 
         <input
-          id="name"
+          id="email"
           type="email"
           class="section-form-item-input"
           :class="{ error: errorEmail }"
@@ -48,7 +48,7 @@
         />
       </label>
 
-      <label for="name" class="section-form-item">
+      <label for="phone" class="section-form-item">
         <div class="section-form-item-text">
           <p class="section-form-item-text-indicator">Celular</p>
           <transition name="error">
@@ -59,7 +59,7 @@
         </div>
 
         <input
-          id="name"
+          id="phone"
           type="tel"
           class="section-form-item-input"
           :class="{ error: errorPhone }"

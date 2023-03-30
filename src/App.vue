@@ -31,6 +31,7 @@ export default {
 
 #app {
   background-color: var(--c2);
+  min-height: 100vh;
 }
 .main {
   background-image: url("../src/assets/images/bg-sidebar-mobile.svg");
@@ -42,7 +43,8 @@ export default {
   #app {
     display: flex;
     justify-content: center;
-    padding: 105px 20px;
+    align-items: center;
+    padding: 20px;
   }
   .main {
     display: grid;

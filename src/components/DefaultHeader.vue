@@ -93,6 +93,7 @@ export default {};
   align-items: center;
   gap: 16px;
   text-decoration: none;
+  max-height: 33px;
 }
 .navigation-item-link-number {
   display: flex;
@@ -134,6 +135,7 @@ export default {};
 @media (min-width: 768px) {
   .navigation {
     display: initial;
+    margin-top: -2px;
   }
   .navigation-item + .navigation-item {
     margin-top: 32px;

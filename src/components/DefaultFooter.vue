@@ -96,13 +96,13 @@ export default {
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
-  background: var(--c12);
+  background-color: var(--c12);
   color: var(--c1);
   text-decoration: none;
   padding: 12px 22px;
   text-align: center;
   border-radius: 7px;
-  transition: 0.4s ease-in;
+  transition: opacity 0.4s ease-in, background-color 0.3s;
   outline: none;
   border: none;
   cursor: pointer;
@@ -130,6 +130,9 @@ export default {
     font-size: 16px;
     line-height: 18px;
     padding: 14px 31px 16px;
+  }
+  .footer-btn-primary:hover {
+    background-color: var(--p1);
   }
   .footer-btn-secondary {
     font-size: 16px;

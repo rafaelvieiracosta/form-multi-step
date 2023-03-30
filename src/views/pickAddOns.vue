@@ -107,10 +107,15 @@ export default {
 
 <style scoped>
 .section-form {
-  margin-top: 40px;
+  margin-top: 24px;
 }
 .section-form-item-input {
   display: none;
+}
+@media (min-width: 768px) {
+  .section-form {
+    margin-top: 40px;
+  }
 }
 
 /* ITEMS */

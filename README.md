@@ -1,24 +1,4 @@
-# UNDER CONSTRUCTION - form-multi-step
+[![readme](/readme.svg)](https://github.com/rafaelvieiracosta/form-multi-step)
+[![link resultado](https://raw.githubusercontent.com/rafaelvieiracosta/rafaelvieiracosta/805e953478bc41fc6db5040c72efd99f81e0da66/components/acessar-resultado.svg)](https://form-multi-step.vercel.app/)
+[![link curso](/acessar-curso.svg)](https://www.frontendmentor.io/challenges/multistep-form-YVAnSdqQBJ)
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -37,7 +37,7 @@ export default {
   background-image: url("../src/assets/images/bg-sidebar-mobile.svg");
   background-repeat: no-repeat;
   background-size: 100%;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding-bottom: 92px;
 }
 @media (min-width: 768px) {
   #app {
@@ -58,6 +58,7 @@ export default {
     background-color: var(--c0);
     background-image: none;
     border-radius: 15px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
 }
 </style>

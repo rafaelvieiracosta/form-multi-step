@@ -84,7 +84,7 @@ export default {
   justify-content: flex-end;
   padding: 16px;
   background-color: var(--c0);
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
